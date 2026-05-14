@@ -73,3 +73,141 @@ class BackgroundAesthetic extends StatelessWidget {
     );
   }
 }
+
+// --- LAYAR 1: MENU UTAMA ---
+class MainMenuScreen extends StatefulWidget {
+  const MainMenuScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: BackgroundAesthetic(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text("✨", style: TextStyle(fontSize: 60)),
+              const SizedBox(height: 20),
+              const Text(
+                "Emoji Match",
+                style: TextStyle(
+                  fontSize: 40,
+                  letterSpacing: 5,
+                  fontWeight: FontWeight.w900,
+                  color: Color(0xFFD87093),
+                  shadows: [Shadow(color: Colors.white, blurRadius: 10)],
+                ),
+              ),
+              const Text(
+                "Aesthetic Memory Game",
+                style: TextStyle(
+                  color: Color(0xFFC71585),
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              const SizedBox(height: 80),
+              const AnimatedCuteButton(
+                label:"PLAY"
+                nextScreen: VariantSelectionScreen(),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+// --- LAYER 2: PILIH KATEGORI ---
+class VariantSelectionScreen extends StatefulWidget {
+  const VariantSelectionScreen({super.key});
+
+ @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: BackgroundAesthetic(
+        child: Column(
+          children: [
+            const SizedBox(height: 70),
+            const Text(
+              "PILIH KATEGORI",
+              style: TextStyle(
+                fontSize: 26,
+                fontWeight: FontWeight.bold,
+                color:  Color(0xFFD87093),
+              ),
+            ),
+            const SizedBox(height: 40),
+            Expanded(
+              child: ListView(
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                children: [
+                  _variantCard(context, "🐶 HEWAN LUCU", [
+                    "🐶",
+                    "🐱",
+                    "🐱",
+                    "🐶",
+                    "🐱",
+                    "🐭",
+                  ]),
+                  const SizedBox(height: 20),
+                  _variantCard(context, "🍎 BUAH SEGAR", [
+                    "🍎",
+                    "🍐",
+                    "🍊",
+                    "🍎",
+                    "🍐",
+                    "🍊",
+                  ]),
+                  const SizedBox(height: 20),
+                  _variantCard(context, "🍕 JAJANAN",[
+                    "🍕",
+                    "🍔",
+                    "🍟",
+                    "🍕",
+                    "🍔",
+                    "🍟",
+                  ]),
+                ], 
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _varianCard(BuildContext context, String title, List<String> emojis) {
+    return GestureDetector(
+      onTap: () => Navigator.pust(
+        context,
+        MaterialPageRoute(builder: (context) => GamePlayScreen(emojis: emojis)),
+      ),
+      child: Container(
+        height: 85,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(25),
+          color: Colors.white.withOpacity(0.7),
+          border: Border.all(color: const Color(0xFFFFB6C1), width: 2),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.pink.withOpacity(0,1),
+              blurRadius: 10,
+             offset: const Offset(0, 5)
+            ),
+          ],
+        ),
+        child: Center(
+          child: Text(
+            title,
+            style: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFFD87093),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
