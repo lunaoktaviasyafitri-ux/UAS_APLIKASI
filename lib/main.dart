@@ -211,3 +211,130 @@ class VariantSelectionScreen extends StatefulWidget {
     );
   }
 }
+
+// --- LAYAR 3: BERMAIN ---
+class GamePlayScreen extends StatefulWidget {
+  final List<String> emojis;
+  const GamePlayScreen({super.key, required this.emojis});
+
+  @override
+  State<GamePlayScreen> createState() => _GamePlayScreenState();
+}
+
+class _GamePlayScreenState extends State<GamePlaySCreen> {
+  late List<String> gameItems;
+  late List<bool> cardFlips;
+  List<int> selectedIndices = [];
+  int score = 0;
+
+  @override
+  void iniState() {
+    super.initState();
+    gameItems = List.from(widget.emojis)..shuffle();
+    cardFlips = List.filled(gameItems,length, false);
+  }
+
+  void _showBalloons() {
+    for (int i =0; i < 6; i++) {
+      final OverlayEntry = OverlayEntry(
+        Builder: (context) => BalloonAnimation(
+          Color:
+              Colors.primaries[math.Random().nextInt(Colors.primaries.length)],
+          startX:
+              math.Random().nextDouble() * MediaQuery.of(context).size.width,
+        ),
+      );
+      Overlay.of(context).insert(OverlayEntry);
+      Future.delayed(const Duration(seconds: 3), () => OverlayEntry.remove());
+    }
+  }
+
+  void _checkGameOver() {
+    if (!cardFlips.contains(false)) {
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context) => AlertDialog(
+          backgroundColor: const Color(0xFFFFF5F7),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+            side: const BorderSide(color: Color(0xFFFFB6C1), width: 3),
+          ),
+          title: const Text(
+            "YEAY SELESAI ✨",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Color(0xFFD87093),
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          content: const Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                "KAMU hebat",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 18),
+              ),
+              Text("Skor Kamu sempurna.", textAlign: TextAlign.center),
+              SizedBox(height: 20),
+            ],
+          ),
+          actions: [
+            Center(
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFFFADADD),
+                  foregroundColor: const Color(0xFFD87093),
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                },
+                child: const Text(
+                  "KEMBALI KE MENU 🏠",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+          ],
+        ),  
+      );
+    }
+  }
+
+  void onCardTap(int index) {
+    if (selectedIndices.length < 2 && !cardFlips[index]) {
+      setState(() {
+        cardFlips[index] = true;
+        selectedIndices.add(index);
+      });
+
+      if (selectedIndices.length == 2) {
+        Timer(const Duration(milliseconds: 600), () {
+          if (!mounted) return;
+          if (gameItems[selectedIndices[0]] == gameItems[selectedIndices[1]]) {
+            setState(() => score += 20);
+            _showBalloons();
+            _checkGameOver();
+          } else {
+            setState(() {
+              cardFlips[selectedIndices[0]] = false;
+              cardFlips[selectedIndices[1]] = false;
+            });
+          }
+          selectedIndices.clear();
+        });
+      }
+    }
+  }
+
+
+
+
+
+}
