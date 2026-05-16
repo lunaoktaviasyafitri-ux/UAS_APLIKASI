@@ -49,12 +49,12 @@ class BackgroundAesthetic extends StatelessWidget {
         Positioned(
           top: -50,
           right: -50,
-          child: _builOrd(180, const Color(0xFFFF69B4).withOpacity(0.2)),
+          child: _buildOrb(180, const Color(0xFFFF69B4).withOpacity(0.2)),
         ),
         Positioned(
           bottom: 100,
           left: -30,
-          child: _buildOrd(120, const Color(0xFFFFC0CB).withOpacity(0.3)),
+          child: _buildOrb(120, const Color(0xFFFFC0CB).withOpacity(0.3)),
         ),
         child,
       ],
@@ -75,7 +75,7 @@ class BackgroundAesthetic extends StatelessWidget {
 }
 
 // --- LAYAR 1: MENU UTAMA ---
-class MainMenuScreen extends StatefulWidget {
+class MainMenuScreen extends StatelessWidget {
   const MainMenuScreen({super.key});
 
   @override
@@ -107,7 +107,7 @@ class MainMenuScreen extends StatefulWidget {
               ),
               const SizedBox(height: 80),
               const AnimatedCuteButton(
-                label:"PLAY"
+                label: "PLAY",
                 nextScreen: VariantSelectionScreen(),
               ),
             ],
@@ -119,10 +119,10 @@ class MainMenuScreen extends StatefulWidget {
 }
 
 // --- LAYER 2: PILIH KATEGORI ---
-class VariantSelectionScreen extends StatefulWidget {
+class VariantSelectionScreen extends StatelessWidget {
   const VariantSelectionScreen({super.key});
 
- @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: BackgroundAesthetic(
@@ -134,7 +134,7 @@ class VariantSelectionScreen extends StatefulWidget {
               style: TextStyle(
                 fontSize: 26,
                 fontWeight: FontWeight.bold,
-                color:  Color(0xFFD87093),
+                color: Color(0xFFD87093),
               ),
             ),
             const SizedBox(height: 40),
@@ -144,7 +144,7 @@ class VariantSelectionScreen extends StatefulWidget {
                 children: [
                   _variantCard(context, "🐶 HEWAN LUCU", [
                     "🐶",
-                    "🐱",
+                    "🐭",
                     "🐱",
                     "🐶",
                     "🐱",
@@ -160,7 +160,7 @@ class VariantSelectionScreen extends StatefulWidget {
                     "🍊",
                   ]),
                   const SizedBox(height: 20),
-                  _variantCard(context, "🍕 JAJANAN",[
+                  _variantCard(context, "🍕 JAJANAN", [
                     "🍕",
                     "🍔",
                     "🍟",
@@ -168,7 +168,7 @@ class VariantSelectionScreen extends StatefulWidget {
                     "🍔",
                     "🍟",
                   ]),
-                ], 
+                ],
               ),
             ),
           ],
@@ -177,9 +177,9 @@ class VariantSelectionScreen extends StatefulWidget {
     );
   }
 
-  Widget _varianCard(BuildContext context, String title, List<String> emojis) {
+  Widget _variantCard(BuildContext context, String title, List<String> emojis) {
     return GestureDetector(
-      onTap: () => Navigator.pust(
+      onTap: () => Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => GamePlayScreen(emojis: emojis)),
       ),
@@ -191,9 +191,9 @@ class VariantSelectionScreen extends StatefulWidget {
           border: Border.all(color: const Color(0xFFFFB6C1), width: 2),
           boxShadow: [
             BoxShadow(
-              color: Colors.pink.withOpacity(0,1),
+              color: Colors.pink.withOpacity(0.1),
               blurRadius: 10,
-             offset: const Offset(0, 5)
+              offset: const Offset(0, 5),
             ),
           ],
         ),
@@ -221,31 +221,31 @@ class GamePlayScreen extends StatefulWidget {
   State<GamePlayScreen> createState() => _GamePlayScreenState();
 }
 
-class _GamePlayScreenState extends State<GamePlaySCreen> {
+class _GamePlayScreenState extends State<GamePlayScreen> {
   late List<String> gameItems;
   late List<bool> cardFlips;
   List<int> selectedIndices = [];
   int score = 0;
 
   @override
-  void iniState() {
+  void initState() {
     super.initState();
     gameItems = List.from(widget.emojis)..shuffle();
-    cardFlips = List.filled(gameItems,length, false);
+    cardFlips = List.filled(gameItems.length, false);
   }
 
   void _showBalloons() {
-    for (int i =0; i < 6; i++) {
-      final OverlayEntry = OverlayEntry(
-        Builder: (context) => BalloonAnimation(
-          Color:
+    for (int i = 0; i < 6; i++) {
+      final overlayEntry = OverlayEntry(
+        builder: (context) => BalloonAnimation(
+          color:
               Colors.primaries[math.Random().nextInt(Colors.primaries.length)],
           startX:
               math.Random().nextDouble() * MediaQuery.of(context).size.width,
         ),
       );
-      Overlay.of(context).insert(OverlayEntry);
-      Future.delayed(const Duration(seconds: 3), () => OverlayEntry.remove());
+      Overlay.of(context).insert(overlayEntry);
+      Future.delayed(const Duration(seconds: 3), () => overlayEntry.remove());
     }
   }
 
@@ -302,7 +302,7 @@ class _GamePlayScreenState extends State<GamePlaySCreen> {
               ),
             ),
           ],
-        ),  
+        ),
       );
     }
   }
@@ -422,7 +422,7 @@ class _GamePlayScreenState extends State<GamePlaySCreen> {
             ),
           ],
         ),
-      )
+      ),
     );
   }
 }
@@ -430,11 +430,11 @@ class _GamePlayScreenState extends State<GamePlaySCreen> {
 // --- KOMPONEN ANIMASI BALON ---
 class BalloonAnimation extends StatefulWidget {
   final Color color;
-  final double static;
+  final double startX;
   const BalloonAnimation({
     super.key,
     required this.color,
-    required this.static,
+    required this.startX,
   });
 
   @override
@@ -456,12 +456,12 @@ class _BalloonAnimationState extends State<BalloonAnimation>
     _animation = Tween<double>(
       begin: 1.2,
       end: -0.2,
-    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
     _controller.forward();
   }
 
   @override
-  void dispose()  {
+  void dispose() {
     _controller.dispose();
     super.dispose();
   }
@@ -539,7 +539,7 @@ class _AnimatedCuteButtonState extends State<AnimatedCuteButton>
             style: ElevatedButton.styleFrom(
               backgroundColor: const Color(0xFFFADADD),
               foregroundColor: const Color(0xFFD78093),
-              padding: const ElevatedButton.symmetric(horizontal: 50, vertical: 22),
+              padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 22),
               elevation: 5,
               shadowColor: Colors.pinkAccent.withOpacity(0.3),
               shape: RoundedRectangleBorder(
@@ -560,4 +560,3 @@ class _AnimatedCuteButtonState extends State<AnimatedCuteButton>
     );
   }
 }
-
