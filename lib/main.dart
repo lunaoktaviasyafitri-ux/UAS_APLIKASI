@@ -530,21 +530,34 @@ class _AnimatedCuteButtonState extends State<AnimatedCuteButton>
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder()
-
-
-
-
+    return AnimatedBuilder(
+      animation: _controller,
+      builder: (context, child) {
+        return Transform.translate(
+          offset: Offset(0, 8 * math.sin(_controller.value * 2 * math.pi)),
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFFFADADD),
+              foregroundColor: const Color(0xFFD78093),
+              padding: const ElevatedButton.symmetric(horizontal: 50, vertical: 22),
+              elevation: 5,
+              shadowColor: Colors.pinkAccent.withOpacity(0.3),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(35),
+              ),
+            ),
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => widget.nextScreen),
+            ),
+            child: Text(
+              widget.label,
+              style: const TextStyle(fontWeight: FontWeight.w900, fontSize: 18),
+            ),
+          ),
+        );
+      },
+    );
   }
-
-
-
-
-
-
-
-
-
-
 }
 
