@@ -333,8 +333,218 @@ class _GamePlayScreenState extends State<GamePlaySCreen> {
     }
   }
 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: BackgroundAesthetic(
+        child: Column(
+          children: [
+            const SizedBox(height: 60),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                    onPressed: () => Navigator.pop(context),
+                    icon: const Icon(
+                      Icons.arrow_back_ios_new,
+                      color: Color(0xFFD87093),
+                    ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 10,
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.8),
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(color: const Color(0xFFFFB6C1)),
+                    ),
+                    child: Text(
+                      "SKOR: $score",
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFFD87093),
+                        fontSize: 20,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 48),
+                ],
+              ),
+            ),
+            const SizedBox(height: 30),
+            Expanded(
+              child: GridView.builder(
+                padding: const EdgeInsets.all(25),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  crossAxisSpacing: 20,
+                  mainAxisSpacing: 20,
+                ),
+                itemCount: gameItems.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () => onCardTap(index),
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 300),
+                      decoration: BoxDecoration(
+                        color: cardFlips[index]
+                            ? Colors.white
+                            : const Color(0xFFFADADD),
+                        borderRadius: BorderRadius.circular(25),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.pink.withOpacity(0.1),
+                            blurRadius: 10,
+                            spreadRadius: 2,
+                          ),
+                        ],
+                        border: Border.all(
+                          color: cardFlips[index]
+                              ? const Color(0xFFFFB6C1)
+                              : Colors.white,
+                          width: 3,
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          cardFlips[index] ? gameItems[index] : "💎",
+                          style: const TextStyle(fontSize: 35),
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      )
+    );
+  }
+}
+
+// --- KOMPONEN ANIMASI BALON ---
+class BalloonAnimation extends StatefulWidget {
+  final Color color;
+  final double static;
+  const BalloonAnimation({
+    super.key,
+    required this.color,
+    required this.static,
+  });
+
+  @override
+  State<BalloonAnimation> createState() => _BalloonAnimationState();
+}
+
+class _BalloonAnimationState extends State<BalloonAnimation>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(seconds: 3),
+      vsync: this,
+    );
+    _animation = Tween<double>(
+      begin: 1.2,
+      end: -0.2,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
+    _controller.forward();
+  }
+
+  @override
+  void dispose()  {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _animation,
+      builder: (context, child) {
+        return Positioned(
+          left: widget.startX,
+          top: MediaQuery.of(context).size.height * _animation.value,
+          child: Material(
+            color: Colors.transparent,
+            child: Column(
+              children: [
+                Container(
+                  width: 40,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    color: widget.color,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                ),
+                Container(width: 1, height: 30, color: Colors.grey),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+// --- KOMPONEN BUTTON PINK KALEM ---
+class AnimatedCuteButton extends StatefulWidget {
+  final String label;
+  final Widget nextScreen;
+  const AnimatedCuteButton({
+    super.key,
+    required this.label,
+    required this.nextScreen,
+  });
+
+  @override
+  State<AnimatedCuteButton> createState() => _AnimatedCuteButtonState();
+}
+
+class _AnimatedCuteButtonState extends State<AnimatedCuteButton>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 1500),
+      vsync: this,
+    )..repeat(reverse: true);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder()
+
+
+
+
+  }
+
+
+
+
+
+
 
 
 
 
 }
+
