@@ -2,7 +2,7 @@
 
 ---
 
-## 1.KOMPONEN 1: BLUEBRINT (RENCANA KERJA APLIKASI)
+## 1.KOMPONEN 1: BLUEPRINT (RENCANA KERJA APLIKASI)
 
 ### 1. Tema & Konsep Utama Visual
 Aplikasi ini adalah game edukasi asah memori (*Memory Card Game*) interaktif. Antarmuka dirancang dengan gaya minimalis-estetic menggunakan palet warna pastel yang lembut agar nyaman di mata dan memberikan kesan elegan:
