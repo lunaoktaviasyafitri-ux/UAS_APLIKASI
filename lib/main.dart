@@ -272,7 +272,7 @@ class _GamePlayScreenState extends State<GamePlayScreen> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                "KAMU hebat",
+                "KAMU HEBAT",
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 18),
               ),
