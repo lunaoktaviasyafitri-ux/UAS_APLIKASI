@@ -23,16 +23,22 @@ Proyek ini mengimplementasikan struktur komponen terpisah (*Component-Driver*) s
 * 'AnimatedCuteButton': Widget tombol interaktif dengan efek membal (*floating animation*).
 
 ## # 3. Intruksi Penyimpanan Proyek Ke GIT (Commit)
+Sesuai instruksi untuk melakukan pembaruan berkala dan dilarang melakukan satu kali push langsung selesai di akhir, aba-aba perintah terminal berikut digunakan setiap  kali selesai mencicil fitur:
+* 'git ststus' (Melihat file yang diubah)
+* 'git add .' (Menambah perubahan ke staging area)
+* 'git commit -m "feat: deskripsi progres fitur"' (Memberikan catatan commit)
+* 'git push origin main' (Mengirim berkas ke GitHub)
+
 ---
 
 ## ⚙️ COMPONEN 2: DOKUMENTASI CARA KERJA & DAFTAR FITUR
 
 ### 🛠️ Daftar Fitur Utama
 1. **Layar Menu Utama Menarik:** Animasi tombol mengambang (*floating custom button*) interaktif berbasis fungsi trigonometrik matematioka ('math sin') untuk menarik perhatian pengguna.
-2. **Sistem Kategori Dinamis:** Pengguna dapat memilih tipe memori berdasarkan 3 kategori mandiri: 🐶 Hewan Lucu, 🍎 Buah Segar, dan 🍕 jajanan.
-3. **Core Memory Match Engine:** Mengunakan durasi pembalikan kartu otomatis (*Timer* 600ms) untuk menutup kembali kartu jika tebaka pemain tidak cocok.
-4. **Dialog Skor & Efek Hadiah:** Penampakan skor dinamis (+20) setiap kali berhasil mencocokkan, serta memicu dekorasi balon meluncur di layar menggunakan sistem 'OverlayEntry'.
-5. **Dialog Kemenangan Kustom:** Pop-up *AlertDialog* estetis untuk merayakan penyelesaian game dengan skor sempurna tanpa merusak hierarki navigasi halaman.
+2. **Sistem Kategori Dinamis:** Pengguna dapat memilih tipe memori berdasarkan 3 kategori mandiri: 🐶 Hewan Lucu, 🍎 Buah Segar, 🍕 jajanan, 🐳 Ikan, 👨‍⚕️ Profesi, dan 🥦 Sayuran.  
+3. **Core Memory Match Engine (12 Grid System):** Papan permainan mengunakanukuran grid baru berkapasitas 12 kotak ($4 \times 3$ kolom).Dilengkapi durasi pembalikan kartu otomatis (*Timer* 600ms) untuk menutup kembali kartu jika tebaka pemain tidak cocok.
+4. **Sistem Skor & Efek Hadiah:** Penampakan skor dinamis (+20) setiap kali berhasil mencocokkan dengan emoji, serta memicu dekorasi balon meluncur di layar menggunakan sistem 'OverlayEntry'.
+5. **Dialog Kemenangan Kustom:** Pop-up *AlertDialog* estetis untuk merayakan penyelesaian game dengan skor sempurna setelah seluruh 12 kartu berhasil dicocokkan tanpa merusak hierarki navigasi halaman.
 
 ### 🧠 Logika Alur Kerja Sistem
 * **Inisialisasi Acak (Shuffle Logic):** Ketika pengguna memilih kategori, data array emoji akan diduplikasi, digabungkan,dan diacak secara otomatis menggunakan fungsi bawaan Dart 'List.from()..shuffle()' di dalam metode 'initState()'. Hal ini menjamin posisi kartu selalu berbeda setiap kali dimulai kembali.
