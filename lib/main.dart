@@ -192,6 +192,7 @@ class VariantSelectionScreen extends StatelessWidget {
                     "🐠",
                     "🦑",
                     "🐡",
+                    "🦀",
                     "🐠",
                     "🦞",
                     "🐡",
