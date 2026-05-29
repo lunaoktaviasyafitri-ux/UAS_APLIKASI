@@ -36,17 +36,27 @@ Sesuai instruksi untuk melakukan pembaruan berkala dan dilarang melakukan satu k
 ## 📸 Tampilan Visual Aplikasi "Emoji Match"
 1. Layar Menu Utama ( Menu Utama )
 Layar ini adalah titik awal pengguna. Menampilkan judul game, sub-judul, dan tombol "PLAY" yang mengambang untuk memulai permainan. Warna lembut dan elemen bintang bersinar memberikan kesan pertama yang estetis.
+<br>
+    <img src="screenshots/tampilan_1.png" widht="100" alt="Menu Utama"/>
 
 2. Layar Pemilihan Kategori ( Pemilihan Kategori )
 Setelah menekan "PLAY", pengguna dibawa ke layar ini. Terdapat enam opsi kategori dengan ikon emoji yang berbeda (Hewan Lucu, Buah Segar, Jajanan, Ikan, Profesi, dan Sayuran) seperti yang tercantum dalam daftar fitur.
+<br>
+    <img src="screenshots/tampilan_2.png" widht="100" alt="Pemilihan Kategori"/>
 
 3. Permainan Dimulai: Grid Kosong ( New Game )Setelah memilih kategori (misalnya 'Hewan Lucu'), papan permainan muncul. Ini menunjukkan status awal: SKOR masih 0, dan semua 12 kartu (grid$4 \times 3$) tertutup, menampilkan ikon berlian (💎) standar.
+<br>
+    <img src="screenshots/tampilan_3.png" widht="100" alt="New Game"/>
 
 4. Gameplay: Proses Mencocokkan ( Matching in Progress )
 Gambar ini menunjukkan keadaan permainan yang sedang berjalan. Pengguna telah berhasil terjadi satu pasang landak (🦔). Skor telah bertambah menjadi 20. Pengguna baru saja membuka kartu di baris ketiga, satu menampilkan landak (🦔) lain dan satu menampilkan tikus (🐭), bersiap untuk langkah selanjutnya.
+<br>
+    <img src="screenshots/tampilan_benar.png" widht="100" alt="Matching in Progress"/>
 
 5. Akhir Permainan: Dialog Kemenangan ( Game Over/Skor Sempurna )
 Permainan telah diselesaikan. Seluruh 12 kartu telah cocokkan (terlihat di latar belakang). Skor akhir adalah 120 (Sempurna). Dialog kustom estetika muncul dengan teks "YEAY SELESAI ✨" dan "KAMU HEBAT", serta tombol untuk "KEMBALI KE MENU 🏠". Ini sesuai dengan 'Custom Victory Dialog' di dokumentasi.
+<br>
+    <img src="screenshots/tampilan_skor_akhir.png" widht="100" alt="Game Over/Skor Sempurna"/>
 
 ### 🛠️ Daftar Fitur Utama
 1. **Layar Menu Utama Menarik:** Animasi tombol mengambang (*floating custom button*) interaktif berbasis fungsi trigonometrik matematioka ('math sin') untuk menarik perhatian pengguna.

@@ -1,4 +1,4 @@
-package com.example.emoji_match
+package com.luna.emoji_match
 
 import io.flutter.embedding.android.FlutterActivity
 
