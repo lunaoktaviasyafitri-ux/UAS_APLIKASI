@@ -33,6 +33,21 @@ Sesuai instruksi untuk melakukan pembaruan berkala dan dilarang melakukan satu k
 
 ## ⚙️ COMPONEN 2: DOKUMENTASI CARA KERJA & DAFTAR FITUR
 
+## 📸 Tampilan Visual Aplikasi "Emoji Match"
+1. Layar Menu Utama ( Menu Utama )
+Layar ini adalah titik awal pengguna. Menampilkan judul game, sub-judul, dan tombol "PLAY" yang mengambang untuk memulai permainan. Warna lembut dan elemen bintang bersinar memberikan kesan pertama yang estetis.
+
+2. Layar Pemilihan Kategori ( Pemilihan Kategori )
+Setelah menekan "PLAY", pengguna dibawa ke layar ini. Terdapat enam opsi kategori dengan ikon emoji yang berbeda (Hewan Lucu, Buah Segar, Jajanan, Ikan, Profesi, dan Sayuran) seperti yang tercantum dalam daftar fitur.
+
+3. Permainan Dimulai: Grid Kosong ( New Game )Setelah memilih kategori (misalnya 'Hewan Lucu'), papan permainan muncul. Ini menunjukkan status awal: SKOR masih 0, dan semua 12 kartu (grid$4 \times 3$) tertutup, menampilkan ikon berlian (💎) standar.
+
+4. Gameplay: Proses Mencocokkan ( Matching in Progress )
+Gambar ini menunjukkan keadaan permainan yang sedang berjalan. Pengguna telah berhasil terjadi satu pasang landak (🦔). Skor telah bertambah menjadi 20. Pengguna baru saja membuka kartu di baris ketiga, satu menampilkan landak (🦔) lain dan satu menampilkan tikus (🐭), bersiap untuk langkah selanjutnya.
+
+5. Akhir Permainan: Dialog Kemenangan ( Game Over/Skor Sempurna )
+Permainan telah diselesaikan. Seluruh 12 kartu telah cocokkan (terlihat di latar belakang). Skor akhir adalah 120 (Sempurna). Dialog kustom estetika muncul dengan teks "YEAY SELESAI ✨" dan "KAMU HEBAT", serta tombol untuk "KEMBALI KE MENU 🏠". Ini sesuai dengan 'Custom Victory Dialog' di dokumentasi.
+
 ### 🛠️ Daftar Fitur Utama
 1. **Layar Menu Utama Menarik:** Animasi tombol mengambang (*floating custom button*) interaktif berbasis fungsi trigonometrik matematioka ('math sin') untuk menarik perhatian pengguna.
 2. **Sistem Kategori Dinamis:** Pengguna dapat memilih tipe memori berdasarkan 3 kategori mandiri: 🐶 Hewan Lucu, 🍎 Buah Segar, 🍕 jajanan, 🐳 Ikan, 👨‍⚕️ Profesi, dan 🥦 Sayuran.  
